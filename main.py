@@ -29,36 +29,50 @@ maping = np.concatenate((np.array(res[0]), np.array(res[1]), np.array(res[2]),np
 print(len(imgs))
 for i in range(16):
     sorting = [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]
+    count_left = 0
+    count_ri = 0
 
     if imgs[i][0][31] >= 250 and imgs[i][31][0] >= 250:
         print('Top left ', i)
         sorting[0][0] = imgs[i]
-    if imgs[i][0][31] >= 250 and imgs[i][31][62] >= 250:
+    elif imgs[i][0][31] >= 250 and imgs[i][31][62] >= 250:
         print('Top righ ', i)
         sorting[0][3] = imgs[i]
-    if imgs[i][62][31] >= 250 and imgs[i][31][0] >= 250:
+    elif imgs[i][62][31] >= 250 and imgs[i][31][0] >= 250:
         print('Bot left ', i)
         sorting[3][0] = imgs[i]
-    if imgs[i][62][31] >= 250 and imgs[i][31][62] >= 250:
+    elif imgs[i][62][31] >= 250 and imgs[i][31][62] >= 250:
         print('Bot righ ', i)
         sorting[3][3] = imgs[i]
+
+    elif imgs[i][60][60] == 0:
+        print('Top left center', i)
+        sorting[1][1] = imgs[i]
+    elif imgs[i][60][15] == 0:
+        print('Top right center', i)
+        sorting[2][1] = imgs[i]
+    elif imgs[i][15][60] == 0:
+        print('Bot left center', i)
+        sorting[1][2] = imgs[i]
+    elif imgs[i][15][15] == 0:
+        print('Bot righ center', i)
+        sorting[2][2] = imgs[i]
     
+    elif imgs[i][32][0] >= 250:
+        print('Left ' + str(count_left+1), i)
+        if (count_left == 0):
+            sorting[1][0]
+            count_left = 1
+        else:
+            sorting[2][0]
 
-        
-
-    # if imgs[i][31][0] >= 250:
-    #     print('Top ', i)
-    #     up_str.append(imgs[i])
-    # if imgs[i][31][62] >= 250:
-    #     print('Botom ', i)
-    #     lower_str.append(imgs[i])
-    # if imgs[i][31][0] <= 250 and imgs[i][1][31] >= 250:
-    #     print('Left1 ', i)
-    #     l1 = imgs[i]
-    # if imgs[i][31][62] <= 250 and imgs[i][1][31] >= 250:
-    #     print('Left2 ', i)
-    #     l1 = imgs[i]
-
+    elif imgs[i][32][64] >= 250:
+        print('righ ' + str(count_ri+1), i)
+        if (count_ri == 0):
+            sorting[1][3]
+            count_ri = 1
+        else:
+            sorting[2][3]
 
     
 
