@@ -36,9 +36,14 @@ for i in range(16):
     if imgs[i][0][31] >= 250 and imgs[i][31][62] >= 250:
         print('Top righ ', i)
         sorting[0][3] = imgs[i]
-    if imgs[i][31][62] >= 250 and imgs[i][0][31] >= 250:
+    if imgs[i][62][31] >= 250 and imgs[i][31][0] >= 250:
         print('Bot left ', i)
-        sorting[0][3] = imgs[i]
+        sorting[3][0] = imgs[i]
+    if imgs[i][62][31] >= 250 and imgs[i][31][62] >= 250:
+        print('Bot righ ', i)
+        sorting[3][3] = imgs[i]
+    
+
         
 
     # if imgs[i][31][0] >= 250:
@@ -66,7 +71,7 @@ ax.set_xlabel('X-Axis')
 ax.set_ylabel('Y-Axis')
 ax.set_zlabel('Z-Axis')
 
-# ax.plot_surface(np.array(x), np.array(y), np.array(maping))
+ax.plot_surface(np.array(x), np.array(y), np.array(maping))
 plt.title('z as 3d height map')
 plt.show()
 
